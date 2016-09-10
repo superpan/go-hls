@@ -1,6 +1,8 @@
 dependencies:
-    - gb build
+  - go get -u github.com/constabulary/gb/...
+  - gb vendor restore
 
 test:
   override:
+    - gb build
     - gb test
