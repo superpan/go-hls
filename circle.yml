@@ -1,0 +1,6 @@
+dependencies:
+    - gb build
+
+test:
+  override:
+    - gb test
