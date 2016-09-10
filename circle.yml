@@ -1,6 +1,7 @@
 dependencies:
-  - go get -u github.com/constabulary/gb/...
-  - gb vendor restore
+  pre:
+    - go get -u github.com/constabulary/gb/...
+    - gb vendor restore
 
 test:
   override:
