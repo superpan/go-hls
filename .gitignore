@@ -5,3 +5,4 @@ vendor/src/
 
 *.rdb
 *.out
+*.ts

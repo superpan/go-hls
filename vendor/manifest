@@ -2,6 +2,13 @@
 	"version": 0,
 	"dependencies": [
 		{
+			"importpath": "github.com/davecgh/go-spew/spew",
+			"repository": "https://github.com/davecgh/go-spew",
+			"revision": "6d212800a42e8ab5c146b8ace3490ee17e5225f9",
+			"branch": "master",
+			"path": "/spew"
+		},
+		{
 			"importpath": "github.com/grafov/m3u8",
 			"repository": "https://github.com/grafov/m3u8",
 			"revision": "b0bcb3ff5af7a35e8355e4960afd0cceeaf4fec4",
@@ -14,10 +21,24 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/pmezard/go-difflib/difflib",
+			"repository": "https://github.com/pmezard/go-difflib",
+			"revision": "792786c7400a136282c1664665ae0a8db921c6c2",
+			"branch": "master",
+			"path": "/difflib"
+		},
+		{
 			"importpath": "github.com/rlmcpherson/s3gof3r",
 			"repository": "https://github.com/rlmcpherson/s3gof3r",
 			"revision": "bc1aca74326ad100d0aa82bfa9ce6e9278620750",
 			"branch": "master"
+		},
+		{
+			"importpath": "github.com/stretchr/testify/assert",
+			"repository": "https://github.com/stretchr/testify",
+			"revision": "d77da356e56a7428ad25149ca77381849a6a5232",
+			"branch": "master",
+			"path": "/assert"
 		},
 		{
 			"importpath": "github.com/urfave/cli",
