@@ -13,4 +13,4 @@ test:
     - cd "$IMPORT_PATH" && cp -r $HOME/$CIRCLE_PROJECT_REPONAME .
     - cd "$APP_PATH" && glide install
   override:
-    - cd "$APP_PATH" && go test
+    - cd "$APP_PATH" && go test $(glide nv)
