@@ -1,8 +1,9 @@
 pkg/
 bin/
-vendor/src/
+vendor/
 *~
 
 *.rdb
 *.out
 *.ts
+vendor

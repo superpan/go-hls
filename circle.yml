@@ -1,9 +1,16 @@
+machine:
+  environment:
+    IMPORT_PATH: /home/ubuntu/.go_workspace/src/github.com/superpan
+    APP_PATH: $IMPORT_PATH/$CIRCLE_PROJECT_REPONAME
 dependencies:
   pre:
-    - go get -u github.com/constabulary/gb/...
-    - gb vendor restore
+    - sudo add-apt-repository -y ppa:masterminds/glide && sudo apt-get update
+    - sudo apt-get install -y glide
 
 test:
+  pre:
+    - mkdir -p "$IMPORT_PATH"
+    - cd "$IMPORT_PATH" && cp -r $HOME/$CIRCLE_PROJECT_REPONAME .
+    - cd "$APP_PATH" && glide install
   override:
-    - gb build
-    - gb test
+    - cd "$APP_PATH" && go test
