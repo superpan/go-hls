@@ -105,7 +105,7 @@ func DownloadSegments(u, output string) error {
 			return err
 		}
 		if res.StatusCode != 200 {
-			return errors.New("")
+			return errors.New("problem downloading segment")
 		}
 
 		_, err = io.Copy(out, res.Body)
