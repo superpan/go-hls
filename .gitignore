@@ -7,3 +7,4 @@ vendor/
 *.out
 *.ts
 vendor
+go-hls

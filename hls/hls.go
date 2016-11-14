@@ -1,6 +1,7 @@
 package hls
 
 import (
+	"errors"
 	"io"
 	"net/http"
 	"net/url"
@@ -88,49 +89,32 @@ func DownloadSegments(u, output string) error {
 	if err != nil {
 		return err
 	}
+	defer out.Close()
 
-	done := make(chan struct{})
+	done := make(chan struct{}, 1024)
 	defer close(done)
 
 	urls, err := BuildSegments(u)
 	if err != nil {
 		return err
 	}
-	segmentCount := len(urls)
-	ch := make(chan *http.Response, segmentCount)
-	errc := make(chan error, 1)
 
 	for _, u := range urls {
-		go func(u string) {
-			res, e := http.Get(u)
-			if e != nil {
-				errc <- e
-				return
-			}
-			//defer res.Body.Close()
-			ch <- res
-		}(u)
-	}
+		res, err := http.Get(u)
+		if err != nil {
+			return err
+		}
+		if res.StatusCode != 200 {
+			return errors.New("problem downloading segment")
+		}
 
-	segmentProcessed := 0
-	for {
-		select {
-		case r := <-ch:
-			segmentProcessed++
-			// need to append to the outout file
-			_, err = io.Copy(out, r.Body)
-			if err != nil {
-				errc <- err
-			}
-			if segmentProcessed == segmentCount {
-				return nil
-			}
-		case err := <-errc:
-			if err != nil {
-				return err
-			}
+		_, err = io.Copy(out, res.Body)
+		if err != nil {
+			return err
 		}
 	}
+
+	return nil
 }
 
 // Download hls segments into a single output file based on the remote index
